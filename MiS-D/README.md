@@ -1,2 +1,2 @@
 # MiS-D
-A basic boilerplate for nodejs backend application with support of mysql, express
+microservice to check distributed logging/tracing

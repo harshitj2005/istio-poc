@@ -1,6 +1,6 @@
 # ISTIO - Request tracing in microservices architecture
 
-Here via this repository we want to check if distributed logging is provided by istio. we are checking below mentioned flows
+Here via this repository we want to check if distributed logging/tracing is provided by istio. we are checking below mentioned flows
 
 1. FlowOne - A(success)-B(success)-C(success)-D(success) - output = 200
 2. FlowTwo - B(success)-D(success)-C(success)-A(success) - output = 200
