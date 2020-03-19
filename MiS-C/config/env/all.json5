@@ -1,0 +1,6 @@
+{
+	PORT: 3002,
+	FORCE_DB_SYNC: "false",
+    enableSequelizeLog: "true",
+    secretKey: '$uper$ecret$e$$ionKey'
+}

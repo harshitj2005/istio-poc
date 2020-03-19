@@ -7,6 +7,10 @@
         port:3306
     },
     app: {
-        name: "Node Backend boilerplate - Production"
-    }
+        name: "MiS A - Production"
+    },
+    misA:"http://localhost:3000",
+    misB:"http://localhost:3001",
+    misC:"http://localhost:3002",
+    misD:"http://localhost:3003",
 }

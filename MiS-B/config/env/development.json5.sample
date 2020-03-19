@@ -7,7 +7,7 @@
         port: 3306
     },
     app: {
-        name: "MiS A - Development"
+        name: "MiS B - Development"
     },
     misA:"http://localhost:3000",
     misB:"http://localhost:3001",
