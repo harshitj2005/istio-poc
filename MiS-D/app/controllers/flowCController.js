@@ -9,34 +9,16 @@ const request = require("request");
 const async = require("async");
 
 var apiFunctions = {
-    //FlowOne - A(success)-B(success)-C(success)-D(success) - output = 200
-    flowOne: function(req,res){
+    //FlowThree - D(success)-C(success)-B(success)-A(success) - output = 200
+    flowThree: function(req,res){
         logger.info("req.headers",req.headers)
         let responseObj = {
-            misA : "success",
+            misA : "fail",
             misB : "fail",
             misC : "fail",
-            misD : "fail"
+            misD : "success"
         };
         async.waterfall([
-            //mis b
-            (next) => {
-                var requestJson = {
-                    url:config.misB+"/return200",
-                    headers:{
-                        "Content-Type":"application/json"
-                    }
-                }
-                request(requestJson, (err,response) => {
-                    if(err){
-                        next(err);
-                    } else {
-                        logger.info("response mis b",response.body);
-                        responseObj.misB = "success";
-                        next(null);
-                    }
-                });
-            },
             //mis c
             (next) => {
                 var requestJson = {
@@ -55,14 +37,29 @@ var apiFunctions = {
             //mis b
             (next) => {
                 var requestJson = {
-                    url:config.misD+"/return200"
+                    url:config.misB+"/return200"
                 }
                 request(requestJson, (err,response) => {
                     if(err){
                         next(err);
                     } else {
-                        logger.info("response mis d",response.body);
-                        responseObj.misD = "success";
+                        logger.info("response mis b",response.body);
+                        responseObj.misB = "success";
+                        next(null);
+                    }
+                });
+            },
+            //mis a
+            (next) => {
+                var requestJson = {
+                    url:config.misA+"/return200"
+                }
+                request(requestJson, (err,response) => {
+                    if(err){
+                        next(err);
+                    } else {
+                        logger.info("response mis a",response.body);
+                        responseObj.misA = "success";
                         next(null);
                     }
                 });

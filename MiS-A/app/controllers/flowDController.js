@@ -9,8 +9,8 @@ const request = require("request");
 const async = require("async");
 
 var apiFunctions = {
-    //FlowOne - A(success)-B(success)-C(success)-D(success) - output = 200
-    flowOne: function(req,res){
+    //FlowFour - A(success)-B(fail)-C(success)-D(fail)- output = 200
+    flowFour: function(req,res){
         logger.info("req.headers",req.headers)
         let responseObj = {
             misA : "success",
@@ -22,17 +22,18 @@ var apiFunctions = {
             //mis b
             (next) => {
                 var requestJson = {
-                    url:config.misB+"/return200",
-                    headers:{
-                        "Content-Type":"application/json"
-                    }
+                    url:config.misB+"/return400"
                 }
                 request(requestJson, (err,response) => {
                     if(err){
                         next(err);
                     } else {
                         logger.info("response mis b",response.body);
-                        responseObj.misB = "success";
+                        if(response.statusCode == 200){
+                            responseObj.misB = "success";
+                        } else {
+                            responseObj.misB = "fail";
+                        }
                         next(null);
                     }
                 });
@@ -47,7 +48,11 @@ var apiFunctions = {
                         next(err);
                     } else {
                         logger.info("response mis c",response.body);
-                        responseObj.misC = "success";
+                        if(response.statusCode == 200){
+                            responseObj.misC = "success";
+                        } else {
+                            responseObj.misC = "fail";
+                        }
                         next(null);
                     }
                 });
@@ -62,7 +67,11 @@ var apiFunctions = {
                         next(err);
                     } else {
                         logger.info("response mis d",response.body);
-                        responseObj.misD = "success";
+                        if(response.statusCode == 200){
+                            responseObj.misD = "success";
+                        } else {
+                            responseObj.misD = "fail";
+                        }
                         next(null);
                     }
                 });

@@ -22,7 +22,7 @@ var apiFunctions = {
             //mis d
             (next) => {
                 var requestJson = {
-                    url:config.misD+"/"
+                    url:config.misD+"/return200"
                 }
                 request(requestJson, (err,response) => {
                     if(err){
@@ -37,7 +37,7 @@ var apiFunctions = {
             //mis c
             (next) => {
                 var requestJson = {
-                    url:config.misC+"/"
+                    url:config.misC+"/return200"
                 }
                 request(requestJson, (err,response) => {
                     if(err){
@@ -52,7 +52,7 @@ var apiFunctions = {
             //mis b
             (next) => {
                 var requestJson = {
-                    url:config.misA+"/"
+                    url:config.misA+"/return200"
                 }
                 request(requestJson, (err,response) => {
                     if(err){

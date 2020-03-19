@@ -9,11 +9,11 @@ const request = require("request");
 const async = require("async");
 
 var apiFunctions = {
-    //FlowOne - A(success)-B(success)-C(success)-D(success) - output = 200
-    flowOne: function(req,res){
+    //FlowFive - A(success)-B(fail)-C(fail)-D(fail)- output = 500
+    flowFive: function(req,res){
         logger.info("req.headers",req.headers)
         let responseObj = {
-            misA : "success",
+            misA : "fail",
             misB : "fail",
             misC : "fail",
             misD : "fail"
@@ -22,17 +22,18 @@ var apiFunctions = {
             //mis b
             (next) => {
                 var requestJson = {
-                    url:config.misB+"/return200",
-                    headers:{
-                        "Content-Type":"application/json"
-                    }
+                    url:config.misB+"/return500"
                 }
                 request(requestJson, (err,response) => {
                     if(err){
                         next(err);
                     } else {
                         logger.info("response mis b",response.body);
-                        responseObj.misB = "success";
+                        if(response.statusCode == 200){
+                            responseObj.misB = "success";
+                        } else {
+                            responseObj.misB = "fail";
+                        }
                         next(null);
                     }
                 });
@@ -40,14 +41,18 @@ var apiFunctions = {
             //mis c
             (next) => {
                 var requestJson = {
-                    url:config.misC+"/return200"
+                    url:config.misC+"/return500"
                 }
                 request(requestJson, (err,response) => {
                     if(err){
                         next(err);
                     } else {
                         logger.info("response mis c",response.body);
-                        responseObj.misC = "success";
+                        if(response.statusCode == 200){
+                            responseObj.misC = "success";
+                        } else {
+                            responseObj.misC = "fail";
+                        }
                         next(null);
                     }
                 });
@@ -55,17 +60,34 @@ var apiFunctions = {
             //mis b
             (next) => {
                 var requestJson = {
-                    url:config.misD+"/return200"
+                    url:config.misD+"/return500"
                 }
                 request(requestJson, (err,response) => {
                     if(err){
                         next(err);
                     } else {
                         logger.info("response mis d",response.body);
-                        responseObj.misD = "success";
+                        if(response.statusCode == 200){
+                            responseObj.misD = "success";
+                        } else {
+                            responseObj.misD = "fail";
+                        }
                         next(null);
                     }
                 });
+            },
+            (next) => {
+                let allFailed = true;
+                for(var key in responseObj){
+                    if(responseObj[key] == "success"){
+                        allFailed = false;
+                    }
+                }
+                if(allFailed){
+                    next("all failed");
+                } else {
+                    next(null);
+                }
             }
         ],(err) => {
             if(err){
