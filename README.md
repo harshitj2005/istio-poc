@@ -1,4 +1,4 @@
-# istio-poc
+# ISTIO - Request tracing in microservices architecture
 
 Here via this repository we want to check if distributed logging is provided by istio. we are checking below mentioned flows
 
