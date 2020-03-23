@@ -40,7 +40,7 @@ catch(err){
         +nconf.get("NODE_ENV")+")");
 }
 nconf.file(nconf.get("NODE_ENV"),{ file: envConfigPath, type:"file", format:json5 })
-    .file("shared",{ file: rootPath+ "/config/env/all.json5", type:"file", format:json5 })
+    .file("shared",{ file: rootPath+ "/config/all.json5", type:"file", format:json5 })
     .add("base-defaults",{type:"literal", store:{
         PORT:5555
     }})
