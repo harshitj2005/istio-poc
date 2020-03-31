@@ -1,0 +1,204 @@
+##################################################################################################
+# mis-a microservice
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: misa
+  labels:
+    app: misa
+    service: misa
+spec:
+  ports:
+  - port: 3000
+    name: http
+  selector:
+    app: misa
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: misa-details
+  labels:
+    account: misa
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: misa
+  labels:
+    app: misa
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: misa
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: misa
+        version: v1
+    spec:
+      serviceAccountName: misa-details
+      containers:
+      - name: misa
+        image: docker.io/mshivam21/misa:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000
+---
+##################################################################################################
+# mis-b microservice
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: misb
+  labels:
+    app: misb
+    service: misb
+spec:
+  ports:
+  - port: 3001
+    name: http
+  selector:
+    app: misb
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: misb-details
+  labels:
+    account: misb
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: misb
+  labels:
+    app: misb
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: misb
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: misb
+        version: v1
+    spec:
+      serviceAccountName: misb-details
+      containers:
+      - name: misb
+        image: docker.io/mshivam21/misb:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3001
+---
+##################################################################################################
+# mis-c microservice
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: misc
+  labels:
+    app: misc
+    service: misc
+spec:
+  ports:
+  - port: 3002
+    name: http
+  selector:
+    app: misc
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: misc-details
+  labels:
+    account: misc
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: misc
+  labels:
+    app: misc
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: misc
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: misc
+        version: v1
+    spec:
+      serviceAccountName: misc-details
+      containers:
+      - name: misc
+        image: docker.io/mshivam21/misc:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3002
+---
+##################################################################################################
+# mis-d microservice
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: misd
+  labels:
+    app: misd
+    service: misd
+spec:
+  ports:
+  - port: 3003
+    name: http
+  selector:
+    app: misd
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: misd-details
+  labels:
+    account: misd
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: misd
+  labels:
+    app: misd
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: misd
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: misd
+        version: v1
+    spec:
+      serviceAccountName: misd-details
+      containers:
+      - name: misd
+        image: docker.io/mshivam21/misd:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3003
+---
