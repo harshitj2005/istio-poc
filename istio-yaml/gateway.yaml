@@ -85,66 +85,14 @@ spec:
     - uri:
         exact: /return500
     - uri:
-        exact: /flowone
-    - uri:
-        exact: /flowfour
-    - uri:
-        exact: /flowfive
+        exact: /flowtwo
     route:
     - destination:
         host: misb
         port:
-          number: 3000
+          number: 3001
 ---
-##################################################################################################
-# mis-c gateway
-##################################################################################################
-apiVersion: networking.istio.io/v1alpha3
-kind: Gateway
-metadata:
-  name: misc-gateway
-spec:
-  selector:
-    istio: ingressgateway # use istio default controller
-  servers:
-  - port:
-      number: 80
-      name: http
-      protocol: HTTP
-    hosts:
-    - "*"
----
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
-metadata:
-  name: misc
-spec:
-  hosts:
-  - "*"
-  gateways:
-  - misc-gateway
-  http:
-  - match:
-    - uri:
-        exact: /
-    - uri:
-        exact: /return200
-    - uri:
-        exact: /return400
-    - uri:
-        exact: /return500
-    - uri:
-        exact: /flowone
-    - uri:
-        exact: /flowfour
-    - uri:
-        exact: /flowfive
-    route:
-    - destination:
-        host: misc
-        port:
-          number: 3000
----
+
 ##################################################################################################
 # mis-d gateway
 ##################################################################################################
@@ -183,14 +131,10 @@ spec:
     - uri:
         exact: /return500
     - uri:
-        exact: /flowone
-    - uri:
-        exact: /flowfour
-    - uri:
-        exact: /flowfive
+        exact: /flowthree
     route:
     - destination:
         host: misd
         port:
-          number: 3000
+          number: 3003
 ---

@@ -1,9 +1,9 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
-  name: productpageee
+  name: misa
 spec:
-  host: productpage
+  host: misa
   trafficPolicy:
     tls:
       mode: ISTIO_MUTUAL
@@ -15,9 +15,9 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
-  name: reviews
+  name: misb
 spec:
-  host: reviews
+  host: misb
   trafficPolicy:
     tls:
       mode: ISTIO_MUTUAL
@@ -25,19 +25,13 @@ spec:
   - name: v1
     labels:
       version: v1
-  - name: v2
-    labels:
-      version: v2
-  - name: v3
-    labels:
-      version: v3
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
-  name: ratings
+  name: misc
 spec:
-  host: ratings
+  host: misc
   trafficPolicy:
     tls:
       mode: ISTIO_MUTUAL
@@ -45,22 +39,13 @@ spec:
   - name: v1
     labels:
       version: v1
-  - name: v2
-    labels:
-      version: v2
-  - name: v2-mysql
-    labels:
-      version: v2-mysql
-  - name: v2-mysql-vm
-    labels:
-      version: v2-mysql-vm
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
-  name: details
+  name: misd
 spec:
-  host: details
+  host: misd
   trafficPolicy:
     tls:
       mode: ISTIO_MUTUAL
@@ -68,7 +53,4 @@ spec:
   - name: v1
     labels:
       version: v1
-  - name: v2
-    labels:
-      version: v2
 ---
