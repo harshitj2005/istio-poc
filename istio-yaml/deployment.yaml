@@ -1,6 +1,5 @@
-##################################################################################################
-# mis-a microservice
-##################################################################################################
+---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -14,6 +13,7 @@ spec:
     name: http
   selector:
     app: misa
+
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -22,6 +22,7 @@ metadata:
   labels:
     account: misa
 ---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -49,9 +50,7 @@ spec:
         ports:
         - containerPort: 3000
 ---
-##################################################################################################
-# mis-b microservice
-##################################################################################################
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -66,6 +65,7 @@ spec:
   selector:
     app: misb
 ---
+
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -73,6 +73,7 @@ metadata:
   labels:
     account: misb
 ---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -100,9 +101,7 @@ spec:
         ports:
         - containerPort: 3001
 ---
-##################################################################################################
-# mis-c microservice
-##################################################################################################
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -117,6 +116,7 @@ spec:
   selector:
     app: misc
 ---
+
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -124,6 +124,7 @@ metadata:
   labels:
     account: misc
 ---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -151,9 +152,7 @@ spec:
         ports:
         - containerPort: 3002
 ---
-##################################################################################################
-# mis-d microservice
-##################################################################################################
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -168,6 +167,7 @@ spec:
   selector:
     app: misd
 ---
+
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -175,6 +175,7 @@ metadata:
   labels:
     account: misd
 ---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -201,4 +202,3 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3003
----
