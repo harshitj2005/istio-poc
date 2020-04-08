@@ -44,7 +44,7 @@ spec:
       serviceAccountName: misa-details
       containers:
       - name: misa
-        image: localhost:5000/misa:1.0
+        image: misa:1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3000
@@ -95,7 +95,7 @@ spec:
       serviceAccountName: misb-details
       containers:
       - name: misb
-        image: localhost:5000/misb:1.0
+        image: misb:1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3001
@@ -146,7 +146,7 @@ spec:
       serviceAccountName: misc-details
       containers:
       - name: misc
-        image: localhost:5000/misc:1.0
+        image: misc:1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3002
@@ -197,7 +197,7 @@ spec:
       serviceAccountName: misd-details
       containers:
       - name: misd
-        image: localhost:5000/misd:1.0
+        image: misd:1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3003
