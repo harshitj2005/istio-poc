@@ -29,7 +29,7 @@ spec:
   http:
   - match:
     - uri:
-        prefix: /misa
+        prefix: /misa/
     rewrite:
       uri: /
     route:
@@ -52,7 +52,7 @@ spec:
   http:
   - match:
     - uri:
-        prefix: /misb
+        prefix: /misb/
     rewrite:
       uri: /
     route:
@@ -75,7 +75,7 @@ spec:
   http:
   - match:
     - uri:
-        prefix: /misd
+        prefix: /misd/
     rewrite:
       uri: /
     route:
