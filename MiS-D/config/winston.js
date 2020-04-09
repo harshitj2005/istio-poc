@@ -6,7 +6,7 @@ var logger = new (winston.Logger)();
 logger.add(winston.transports.Console, {
     level: "verbose",
     prettyPrint: true,
-    colorize: true,
+    colorize: false,
     silent: false,
     timestamp: false
 });
