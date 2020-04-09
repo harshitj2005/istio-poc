@@ -11,7 +11,8 @@ const async = require("async");
 var apiFunctions = {
     //FlowOne - A(success)-B(success)-C(success)-D(success) - output = 200
     flowOne: function(req,res){
-        logger.info("req.headers",req.headers)
+        logger.info("req.headers",req.headers);
+        var xReqId = req.headers["x-request-id"];
         let responseObj = {
             misA : "success",
             misB : "fail",
@@ -24,7 +25,8 @@ var apiFunctions = {
                 var requestJson = {
                     url:config.misB+"/return200",
                     headers:{
-                        "Content-Type":"application/json"
+                        "Content-Type":"application/json",
+                        "x-request-id":xReqId
                     }
                 }
                 request(requestJson, (err,response) => {
@@ -40,7 +42,11 @@ var apiFunctions = {
             //mis c
             (next) => {
                 var requestJson = {
-                    url:config.misC+"/return200"
+                    url:config.misC+"/return200",
+                    headers:{
+                        "Content-Type":"application/json",
+                        "x-request-id":xReqId
+                    }
                 }
                 request(requestJson, (err,response) => {
                     if(err){
@@ -55,7 +61,11 @@ var apiFunctions = {
             //mis b
             (next) => {
                 var requestJson = {
-                    url:config.misD+"/return200"
+                    url:config.misD+"/return200",
+                    headers:{
+                        "Content-Type":"application/json",
+                        "x-request-id":xReqId
+                    }
                 }
                 request(requestJson, (err,response) => {
                     if(err){
