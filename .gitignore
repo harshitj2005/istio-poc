@@ -8,6 +8,8 @@ npm-debug.log
 package-lock.json
 node_modules
 istio-1.5.0-win
+nginx
+wso2-api-gateway
 
 # From Mean Stack
 .DS_Store
