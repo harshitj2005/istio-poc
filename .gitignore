@@ -10,6 +10,7 @@ node_modules
 istio-1.5.0-win
 nginx
 wso2-api-gateway
+istio-yaml
 
 # From Mean Stack
 .DS_Store
