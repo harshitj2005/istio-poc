@@ -6,17 +6,16 @@ metadata:
   name: misa
   namespace: default
   annotations:
-    kubernetes.io/ingress.class: traefik
     traefik.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - host: k8stesting.tk
     http:
       paths:
-      - path: /misa/
-        backend:
+      - backend:
           serviceName: misa
           servicePort: 3000
+        path: /misa
 
 ---
 apiVersion: extensions/v1beta1
@@ -25,17 +24,16 @@ metadata:
   name: misb
   namespace: default
   annotations:
-    kubernetes.io/ingress.class: traefik
     traefik.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - host: k8stesting.tk
     http:
       paths:
-      - path: /misb/
-        backend:
+      - backend:
           serviceName: misb
           servicePort: 3001
+        path: /misb
 
 
 ---
@@ -45,18 +43,16 @@ metadata:
   name: misc
   namespace: default
   annotations:
-    kubernetes.io/ingress.class: traefik
     traefik.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - host: k8stesting.tk
     http:
       paths:
-      - path: /misc/
-        backend:
+      - backend:
           serviceName: misc
           servicePort: 3002
-
+        path: /misc
 
 ---
 apiVersion: extensions/v1beta1
@@ -65,16 +61,15 @@ metadata:
   name: misd
   namespace: default
   annotations:
-    kubernetes.io/ingress.class: traefik
     traefik.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - host: k8stesting.tk
     http:
       paths:
-      - path: /misd/
-        backend:
+      - backend:
           serviceName: misd
           servicePort: 3003
+        path: /misd
 
 
