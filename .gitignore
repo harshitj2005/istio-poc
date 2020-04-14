@@ -8,7 +8,6 @@ npm-debug.log
 package-lock.json
 node_modules
 istio-1.5.0-win
-istio-yaml
 nginx
 wso2-api-gateway
 

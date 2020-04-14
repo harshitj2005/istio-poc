@@ -1,0 +1,30 @@
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: mis-ingress-rules
+  namespace: default
+  annotations:
+    traefik.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: k8stesting.tk
+    http:
+      paths:
+      - backend:
+          serviceName: misa
+          servicePort: 3000
+        path: /misa
+      - backend:
+          serviceName: misb
+          servicePort: 3001
+        path: /misb
+      - backend:
+          serviceName: misc
+          servicePort: 3002
+        path: /misc
+      - backend:
+          serviceName: misd
+          servicePort: 3003
+        path: /misd

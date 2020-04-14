@@ -1,0 +1,106 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: https-gateway
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 443
+      name: https
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: https-credentials
+    hosts:
+    - k8stesting.tk
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: misa
+spec:
+  hosts:
+  - k8stesting.tk
+  gateways:
+  - https-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /misa/
+    rewrite:
+      uri: /
+    route:
+    - destination:
+        host: misa
+        port:
+          number: 3000
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: misb
+spec:
+  hosts:
+  - k8stesting.tk
+  gateways:
+  - https-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /misb/
+    rewrite:
+      uri: /
+    route:
+    - destination:
+        host: misb
+        port:
+          number: 3001
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: misd
+spec:
+  hosts:
+  - k8stesting.tk
+  gateways:
+  - https-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /misd/
+    rewrite:
+      uri: /
+    route:
+    - destination:
+        host: misd
+        port:
+          number: 3003
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: fortio
+spec:
+  hosts:
+  - k8stesting.tk
+  gateways:
+  - https-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /fortio
+    route:
+    - destination:
+        host: fortio
+        port:
+          number: 8080
+
+
