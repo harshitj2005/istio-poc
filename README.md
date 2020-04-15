@@ -12,3 +12,11 @@ Here via this repository we want to check if distributed logging/tracing is prov
 1. A tracing chart showing spans from all the MiS showing which microservices took how much time and what was the response code.
 2. If any microservice failed to serve the request then it should be shown in the tracing chart spans.
 3. Ability to find span using request id
+
+## docker-compose URL's
+MISA :- http://localhost:3000
+MISB :- http://localhost:3001
+MISC :- http://localhost:3002
+MISD :- http://localhost:3003
+Fortio:- http://localhost:8080/fortio/
+

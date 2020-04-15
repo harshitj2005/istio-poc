@@ -1,0 +1,42 @@
+version: '3'
+services:
+  misa:
+    image: misa:1.0
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+      - default
+  misb:
+    image: misb:1.0
+    restart: always
+    ports:
+      - "3001:3001"
+    networks:
+      - default
+  misc:
+    image: misc:1.0
+    restart: always
+    ports:
+      - "3002:3002"
+    networks:
+      - default
+  misd:
+    image: misd:1.0
+    restart: always
+    ports:
+      - "3003:3003"
+    networks:
+      - default
+  fortio:
+    image: fortio/fortio:latest_release
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - default
+
+networks:
+  default:
+    external:
+      name: main-network
